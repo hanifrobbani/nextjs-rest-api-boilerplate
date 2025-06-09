@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useUserQuery } from "@/service/fetchDataUser.service";
 
 export default function Home() {
