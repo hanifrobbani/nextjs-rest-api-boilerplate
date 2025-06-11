@@ -1,5 +1,5 @@
 import axiosInstance from "@/lib/axiosInstance";
-import type { getUserResponse, PostUserPayload, postUserResponse } from "@/types/user/userTypes"
+import type { getUserResponse, PostUserPayload, postUserResponse } from "@/types/user/user.types"
 
 export const getUser = async (): Promise<getUserResponse> => {
     try {

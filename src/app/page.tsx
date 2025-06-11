@@ -5,7 +5,7 @@ import { ZodError } from "zod";
 import { PostUserSchema } from "@/validations/userSchema";
 
 export default function Home() {
-  // const { data, isLoading, isError } = useUserQuery();
+  const { data, isLoading, isError } = useUserQuery();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -151,7 +151,7 @@ export default function Home() {
         </form>
       </div>
 
-      {/* {isLoading ? (
+      {isLoading ? (
         <div className="">Loading...</div>
       ) : isError ? (
         <div className="">Error while get data from server</div>
@@ -161,7 +161,7 @@ export default function Home() {
             <li key={user.id}>{user.name}</li>
           ))}
         </ul>
-      )} */}
+      )}
     </div>
   );
 }
