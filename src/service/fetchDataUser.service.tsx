@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import type { getUserResponse } from "@/types/user/user.types";
-import { getUser } from "@/hooks/useFetchDataUser";
+import { useQuery, useMutation  } from "@tanstack/react-query";
+import type { getUserResponse, PostUserPayload, postUserResponse } from "@/types/user/user.types";
+import { getUser, postUser } from "@/hooks/useFetchDataUser";
 
 export const useUserQuery = () => {
   return useQuery<getUserResponse, Error>({
@@ -8,3 +8,10 @@ export const useUserQuery = () => {
     queryFn: getUser,
   });
 };
+
+export const usePostUser = () => {
+  return useMutation<postUserResponse, Error, PostUserPayload>({
+    mutationFn: postUser,
+  });
+};
+

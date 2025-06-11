@@ -1,5 +1,5 @@
 "use client";
-import { useUserQuery } from "@/service/fetchDataUser.service";
+import { useUserQuery, usePostUser } from "@/service/fetchDataUser.service";
 import React, { useState } from "react";
 import { ZodError } from "zod";
 import { PostUserSchema } from "@/validations/userSchema";
@@ -25,7 +25,9 @@ export default function Home() {
 
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const postUserMutation = usePostUser();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
     setSubmissionSuccess(false);
@@ -33,6 +35,8 @@ export default function Home() {
     try {
       PostUserSchema.parse(formData);
       console.log("Form data is valid:", formData);
+      await postUserMutation.mutateAsync(formData);
+
       setSubmissionSuccess(true);
     } catch (error) {
       if (error instanceof ZodError) {
@@ -44,7 +48,6 @@ export default function Home() {
           }
         });
         setErrors(newErrors);
-        
       }
     }
   };
@@ -150,7 +153,8 @@ export default function Home() {
           </button>
         </form>
       </div>
-
+        
+        {/* An error will occur because the default API endpoint has not been set, so it must be set manually. */}
       {isLoading ? (
         <div className="">Loading...</div>
       ) : isError ? (
@@ -158,7 +162,7 @@ export default function Home() {
       ) : (
         <ul>
           {data?.map((user) => (
-            <li key={user.id}>{user.name}</li>
+            <li key={user.id}>{user.username}</li>
           ))}
         </ul>
       )}

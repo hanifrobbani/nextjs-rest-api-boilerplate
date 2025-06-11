@@ -1,13 +1,13 @@
 export type getUserResponse = {
     id: number,
-    name: string,
+    username: string,
     email: string,
-    age: number|null,
+    password: number|null,
 }[]
 export type PostUserPayload  = {
-    name: string,
+    username: string,
     email: string,
-    age: number,
+    password: string,
 }
 
 export type postUserResponse = {
